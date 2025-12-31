@@ -34,3 +34,7 @@ class MemoryCache:
 
 def fetch_many(cache_obj, keys: list) -> dict:
     return {k: cache_obj.get(k) for k in keys if cache_obj.get(k) is not None}
+
+
+def normalize_ttl(ttl_sec: int, minimum: int = 5) -> int:
+    return max(minimum, int(ttl_sec or minimum))
