@@ -6,3 +6,6 @@
 - `src/retry.py`: Jittered exponential backoff policies.
 - `src/validator.py`: Input validation and slug sanitization.
 - `src/metrics.py`: Lightweight counters and latency histograms.
+
+### Shutdown Checklist
+Flush in-flight metrics snapshots and release local file locks before exiting worker loops.
