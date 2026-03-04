@@ -15,3 +15,11 @@ class MetricsRegistry:
 
     def snapshot(self) -> Dict:
         return {'counters': dict(self._counters), 'samples': {k: len(v) for k, v in self._timings.items()}}
+
+
+def compute_p95(samples: list) -> float:
+    if not samples:
+        return 0.0
+    ordered = sorted(samples)
+    idx = min(len(ordered) - 1, int(len(ordered) * 0.95))
+    return round(float(ordered[idx]), 2)
