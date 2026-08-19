@@ -17,3 +17,7 @@ def parse_retry_after(header_val, fallback: float = 1.0) -> float:
         return max(0.0, float(str(header_val).strip()))
     except (TypeError, ValueError):
         return fallback
+
+
+def linear_backoff(attempt: int, step: float = 1.5, cap: float = 20.0) -> float:
+    return round(min(cap, max(0.5, attempt * step)), 2)
