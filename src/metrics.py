@@ -23,3 +23,8 @@ def compute_p95(samples: list) -> float:
     ordered = sorted(samples)
     idx = min(len(ordered) - 1, int(len(ordered) * 0.95))
     return round(float(ordered[idx]), 2)
+
+
+def moving_avg(values: list, window: int = 5) -> float:
+    subset = values[-max(1, window):]
+    return round(sum(subset) / len(subset), 3) if subset else 0.0
